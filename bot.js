@@ -60,8 +60,6 @@ bot.on("message", function(message) {
 		bot.sendFile(message.channel, "http://i0.kym-cdn.com/photos/images/facebook/000/993/875/084.png")
 	}
 })
-
-// could make this much better by saying if the var is undefined, create a new var "input"
 bot.on("message", function(message) {
 
 	var input = message.content.toLowerCase();
@@ -172,6 +170,54 @@ bot.on("message", function(message) {
 			})
 		})
 	}
+})
+// audio test
+
+bot.on("message", function(message) {
+
+	if(message.content === "!datboi") {
+
+		bot.joinVoiceChannel(message.author.voiceChannel, function(error, con) {
+
+			if(error) console.log(error);
+
+			else bot.voiceConnection.playFile("/Users/ArmandG/Desktop/SBot/audio/datboi.mp3", function(err, intent) {
+
+				if(err) console.log(err);
+
+				else intent.on("end", () => {
+
+					bot.leaveVoiceChannel(message.author.voiceChannel)
+				})
+			});
+		});
+	}
+})
+
+// youtube
+
+bot.on("message", function(message) {
+	var input = message.content
+
+	if(input.startsWith("!play")) {
+
+		input = input.substring(6)
+
+		bot.joinVoiceChannel(message.author.voiceChannel).then(function (connection) {
+
+			console.log("playing music for" + "" + message.author)
+
+			connection.playRawStream(ytdl(input), {volume: "0.25"}, function(err, intent) {
+
+				if(err) console.log(err);
+
+				else intent.on("end", () => {
+
+					bot.leaveVoiceChannel(message.author.voiceChannel)
+				})
+			})
+		})
+	}
 
 	if(input === "!stop") {
 
@@ -181,11 +227,11 @@ bot.on("message", function(message) {
 })
 
 // Bot login
+nconf.file({file:"options.json"})
 bot.on("ready", function(message) {
 	console.log("Ready for orders!")
 })
 console.log("Logging in...");
-nconf.file({file:"options.json"})
 
 bot.loginWithToken(nconf.get("BotToken")).then(success).catch(err);
 
