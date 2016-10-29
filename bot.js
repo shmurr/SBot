@@ -20,7 +20,6 @@ bot.on('message', message => {
 	}
 });
 
-
 // Bot login
 nconf.file({file:"options.json"})
 bot.on("ready", function(message) {
