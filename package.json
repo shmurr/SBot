@@ -1,0 +1,19 @@
+{
+  "name": "sbot2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^10.0.1",
+    "discord.js-music": "^1.0.3",
+    "nconf": "^0.8.4",
+    "opusscript": "0.0.1",
+    "request": "^2.76.0",
+    "ytdl-core": "^0.7.19"
+  }
+}
