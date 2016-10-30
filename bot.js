@@ -1,8 +1,8 @@
-const Discord = require("discord.js");
+const Discord = require('discord.js');
 const bot = new Discord.Client();
-const request = require("request");
-const ytdl = require("ytdl-core");
-nconf = require("nconf");
+const request = require('request');
+const ytdl = require('ytdl-core');
+nconf = require('nconf');
 var queue = [];
 
 //youtube
@@ -15,7 +15,7 @@ bot.on('message', message => {
 		voiceChannel.join()
 			.then(connection => {
 				for(i = 0; i < queue.length; i++) {
-					const audio = connection.playStream(ytdl(queue[i]), {volume: "0.25"});
+					const audio = connection.playStream(ytdl(queue[i]), {volume: '0.25'});
 					message.channel.sendMessage('Now playing ' + input +' !')
 					audio.on('end', () => {
 						voiceChannel.leave();
@@ -25,18 +25,18 @@ bot.on('message', message => {
 });
 
 // Bot login
-nconf.file({file:"options.json"})
-bot.on("ready", function(message) {
-	console.log("Ready for orders!")
+nconf.file({file:'options.json'})
+bot.on('ready', function(message) {
+	console.log('Ready for orders!')
 })
-console.log("Logging in...");
+console.log('Logging in...');
 
-bot.login(nconf.get("BotToken")).then(success).catch(err);
+bot.login(nconf.get('BotToken')).then(success).catch(err);
 
 function success(token){
-	console.log("Success!")
+	console.log('Success!')
 }
 
 function err(error){
-	console.log("Error logging in")
+	console.log('Error logging in')
 }
