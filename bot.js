@@ -15,12 +15,11 @@ bot.on('message', message => {
 		voiceChannel.join()
 			.then(connection => {
 				for(i = 0; i < queue.length; i++) {
-					const audio = connection.playStream(ytdl(queue[i]), {volume: "0.25"})};
-				message.channel.sendMessage('Now playing ' + input +' !')
-				console.log(bot.connection)
-				audio.on('end', () => {
-					voiceChannel.leave();
-				});
+					const audio = connection.playStream(ytdl(queue[i]), {volume: "0.25"});
+					message.channel.sendMessage('Now playing ' + input +' !')
+					audio.on('end', () => {
+						voiceChannel.leave();
+				})};
 			});
 	}
 });
