@@ -10,7 +10,6 @@
   "license": "ISC",
   "dependencies": {
     "discord.js": "^10.0.1",
-    "discord.js-music": "^1.0.3",
     "nconf": "^0.8.4",
     "opusscript": "0.0.1",
     "request": "^2.76.0",
